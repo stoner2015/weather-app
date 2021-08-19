@@ -20,18 +20,15 @@ const main = async () => {
                 //mostrar mensaje
                 const itemPlace = await readInputMenuOption('place city: ');
 
-                // message = `${option} description: ${itemPlace}`;
-
                 //search place
                 const places = await searches.city(itemPlace);
 
                 //select place
                 const idPlace = await listPlacesMenu(places);
-                if(idPlace === '0') continue;
+                if (idPlace === '0') continue;
                 const selectPlace = places.find(place => place.id === idPlace);
 
                 searches.addRecordsSearch(selectPlace.name);
-
 
                 //consumer API Weather Page API
                 const weatherPlace = await searches.weatherPlace(selectPlace.lat, selectPlace.lng);
@@ -48,27 +45,22 @@ const main = async () => {
 
                 break;
             case '2':
-                if(searches.camelRecords.length>0){
+                if (searches.camelRecords.length > 0) {
 
-                    searches.camelRecords.forEach((place,indexPlace) =>{
-                        const indexPlaceConsole = `${indexPlace+1}.`.green;
+                    searches.camelRecords.forEach((place, indexPlace) => {
+                        const indexPlaceConsole = `${indexPlace + 1}.`.green;
                         console.log(`${indexPlaceConsole} ${place} `);
-                    })    
-                    
+                    })
+
                 }
-                
+
                 break;
             default:
                 break;
         }
-        // saveData(groupActivity.listActivityGroup);
-
-        //if(option!== '0'){
         await pauseMenu();
-        //}
 
     } while (option !== '0');
-
 
 }
 

@@ -100,53 +100,10 @@ const listPlacesMenu = async(places = [])=>{
     return idPlace;   
 };
 
-const showlistActivityCheckMenu = async(activities = [])=>{
-    const choices = activities.map((activity, index) =>{
-        const indexActivity = `${index+1}.`.green; 
-        return {
-            value: activity.id,
-            name:`${indexActivity} ${activity.description} :: ${activity.state} `,
-            checked: (activity.state !== 'Por Hacer') ? true: false 
-        }
-    });
-
-    const selectOptions = [
-        
-        {
-            type: 'checkbox',
-            pageSize:20,
-            name: 'activityIds',
-            message: 'Select Activity',
-            choices
-        }
-    ]
-
-    const {activityIds} = await inquirer.prompt(selectOptions);
-    return activityIds;
-    
-   
-};
-
-const confirmMessage = async(message) =>{
-    const questionConfirm = [
-        {
-            type: 'confirm',
-            name: 'responseValue',
-            message
-        }
-    ];
-    const {responseValue} = await inquirer.prompt(questionConfirm);
-    return responseValue;
-} 
-
-
-
 
 module.exports = {
     printMenu,
     pauseMenu,
     readInputMenuOption,
-    listPlacesMenu,
-    confirmMessage,
-    showlistActivityCheckMenu
+    listPlacesMenu    
 }
